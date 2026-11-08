@@ -39,6 +39,14 @@ jobs:
           echo "APP_DIR=$APP_DIR" >> "$GITHUB_ENV"
           echo "Found app at: $APP_DIR"
 
+      - name: Upload extracted source for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: WARFRONT-extracted-source
+          path: source/
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Install web dependencies and build
         shell: bash
         run: |
