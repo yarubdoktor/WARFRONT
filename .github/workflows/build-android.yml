@@ -45,7 +45,8 @@ jobs:
           cd "$APP_DIR"
           npm install
           node -e "const p=require('./package.json'); if(!p.scripts || !p.scripts.build) { console.error('package.json has no build script'); process.exit(1) }"
-          npm run build
+          # The game entry point uses top-level await; target modern Chromium/WebView.
+          npm run build -- --target esnext
 
       - name: Set up Java
         uses: actions/setup-java@v4
